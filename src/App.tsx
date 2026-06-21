@@ -45,7 +45,7 @@ export default function App() {
   return (
     <>
       <LoadingScreen done={loaded} />
-      <div className={`transition-opacity duration-1000 ${loaded ? 'opacity-100' : 'opacity-0'}`}>
+      <div className={`transition-opacity duration-1000 overflow-x-hidden w-full ${loaded ? 'opacity-100' : 'opacity-0'}`}>
         <Navigation />
         <main>
           <Hero />

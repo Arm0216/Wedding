@@ -11,7 +11,7 @@ export default function LoveLetter() {
   return (
     <section
       id="story"
-      className="py-24 px-6 relative overflow-hidden"
+      className="py-24 px-4 sm:px-6 relative overflow-hidden"
       style={{ background: 'linear-gradient(160deg, #FBF6EF 0%, #F7E7CE 55%, #FBF6EF 100%)' }}
     >
       {/* Soft background petals */}
@@ -50,7 +50,7 @@ export default function LoveLetter() {
         >
           {/* Card with paper texture effect */}
           <div
-            className="animate-float relative rounded-3xl px-8 py-12 sm:px-14 sm:py-16"
+            className="animate-float relative rounded-3xl px-5 py-10 sm:px-14 sm:py-16"
             style={{
               background: 'linear-gradient(145deg, #FEFAF2 0%, #FDF6E8 60%, #FAF0DC 100%)',
               boxShadow:
