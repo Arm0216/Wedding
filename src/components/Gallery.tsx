@@ -86,7 +86,7 @@ export default function Gallery() {
   const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null)
 
   return (
-    <section id="gallery" className="py-24 px-6 bg-ivory">
+    <section id="gallery" className="py-24 px-4 sm:px-6 bg-ivory overflow-hidden">
       <div className="max-w-5xl mx-auto">
         <div
           ref={ref}
@@ -105,8 +105,9 @@ export default function Gallery() {
           </div>
         </div>
 
+        {/* Desktop grid */}
         <div
-          className="grid gap-3"
+          className="hidden sm:grid gap-3"
           style={{
             gridTemplateColumns: 'repeat(3, 1fr)',
             gridTemplateRows: '220px 220px 220px',
@@ -120,6 +121,27 @@ export default function Gallery() {
               delay={i * 100}
               onClick={() => setLightbox(img)}
             />
+          ))}
+        </div>
+
+        {/* Mobile grid — simple 2-col */}
+        <div className="sm:hidden grid grid-cols-2 gap-3">
+          {galleryImages.map((img, i) => (
+            <div
+              key={img.src}
+              className={`relative overflow-hidden rounded-2xl cursor-pointer ${
+                i === 0 ? 'col-span-2 h-64' : 'h-48'
+              }`}
+              onClick={() => setLightbox(img)}
+            >
+              <img
+                src={img.src}
+                alt={img.alt}
+                style={{ objectPosition: img.position ?? 'center' }}
+                className="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
           ))}
         </div>
       </div>
