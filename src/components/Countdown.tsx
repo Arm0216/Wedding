@@ -23,8 +23,8 @@ function Unit({ value, label }: { value: number; label: string }) {
   return (
     <div className="flex flex-col items-center gap-1">
       <div className="relative">
-        <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center shadow-glass">
-          <span className="font-serif text-xl sm:text-2xl font-light text-white tabular-nums">
+        <div className="w-11 h-11 sm:w-16 sm:h-16 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center shadow-glass">
+          <span className="font-serif text-base sm:text-2xl font-light text-white tabular-nums">
             {String(value).padStart(2, '0')}
           </span>
         </div>
@@ -55,11 +55,11 @@ export default function Countdown() {
   return (
     <div className="flex items-end gap-2 sm:gap-3">
       <Unit value={time.days} label="Days" />
-      <span className="text-white/60 text-2xl mb-8 font-light">:</span>
+      <span className="text-white/60 text-base sm:text-2xl mb-6 sm:mb-8 font-light">:</span>
       <Unit value={time.hours} label="Hours" />
-      <span className="text-white/60 text-2xl mb-8 font-light">:</span>
+      <span className="text-white/60 text-base sm:text-2xl mb-6 sm:mb-8 font-light">:</span>
       <Unit value={time.minutes} label="Mins" />
-      <span className="text-white/60 text-2xl mb-8 font-light">:</span>
+      <span className="text-white/60 text-base sm:text-2xl mb-6 sm:mb-8 font-light">:</span>
       <Unit value={time.seconds} label="Secs" />
     </div>
   )

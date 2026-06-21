@@ -47,18 +47,21 @@ export default function MusicPlayer() {
     window.onYouTubeIframeAPIReady = () => {
       playerRef.current = new window.YT.Player('yt-player', {
         videoId: YOUTUBE_VIDEO_ID,
-        playerVars: { autoplay: 1, loop: 1, playlist: YOUTUBE_VIDEO_ID, controls: 0, mute: 0, enablejsapi: 1 },
+        playerVars: { autoplay: 0, loop: 1, playlist: YOUTUBE_VIDEO_ID, controls: 0, mute: 0, enablejsapi: 1 },
         events: {
           onReady: (e) => {
             setIsReady(true)
-            try {
-              e.target.playVideo()
-              setTimeout(() => {
-                const state = e.target.getPlayerState()
-                if (state !== window.YT.PlayerState.PLAYING) setShowPrompt(true)
-                else setIsPlaying(true)
-              }, 800)
-            } catch { setShowPrompt(true) }
+            // Auto-play after 20 seconds
+            setTimeout(() => {
+              try {
+                e.target.playVideo()
+                setTimeout(() => {
+                  const state = e.target.getPlayerState()
+                  if (state !== window.YT.PlayerState.PLAYING) setShowPrompt(true)
+                  else setIsPlaying(true)
+                }, 800)
+              } catch { setShowPrompt(true) }
+            }, 20000)
           },
           onStateChange: (e) => {
             setIsPlaying(e.data === window.YT.PlayerState.PLAYING)

@@ -55,21 +55,21 @@ export default function Hero() {
           <div className="flex-1 h-px bg-gold/40" />
         </div>
 
-        <h1 className="font-script text-6xl sm:text-8xl md:text-9xl text-white leading-none drop-shadow-lg animate-fade-up">
+        <h1 className="font-script text-5xl sm:text-8xl md:text-9xl text-white leading-tight drop-shadow-lg animate-fade-up px-4">
           {coupleData.bride} & {coupleData.groom}
         </h1>
 
-        <p className="font-serif italic text-lg sm:text-xl text-white/80 tracking-wide">
+        <p className="font-serif italic text-base sm:text-xl text-white/80 tracking-wide px-4">
           {t.hero.tagline}
         </p>
 
-        <div className="w-full max-w-md flex flex-col items-center gap-4">
-          <div className="flex flex-wrap justify-center items-center gap-2 sm:gap-6">
-            <span className="font-sans text-sm tracking-widest uppercase text-champagne/90">
+        <div className="w-full max-w-xs sm:max-w-md flex flex-col items-center gap-3">
+          <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-1 sm:gap-6">
+            <span className="font-sans text-xs sm:text-sm tracking-widest uppercase text-champagne/90">
               {coupleData.displayDate}
             </span>
-            <span className="w-1 h-1 rounded-full bg-gold/60" />
-            <span className="font-sans text-sm tracking-widest uppercase text-champagne/90 text-center">
+            <span className="hidden sm:block w-1 h-1 rounded-full bg-gold/60" />
+            <span className="font-sans text-xs sm:text-sm tracking-widest uppercase text-champagne/90 text-center">
               {coupleData.venue}, {coupleData.location}
             </span>
           </div>
