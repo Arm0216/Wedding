@@ -86,7 +86,7 @@ export default function Gallery() {
   const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null)
 
   return (
-    <section id="gallery" className="py-24 px-4 sm:px-6 bg-ivory overflow-hidden">
+    <section id="gallery" className="py-24 px-6 bg-ivory overflow-hidden">
       <div className="max-w-5xl mx-auto">
         <div
           ref={ref}
@@ -95,7 +95,7 @@ export default function Gallery() {
           }`}
         >
           <p className="font-sans text-xs tracking-[0.4em] uppercase text-gold mb-3">{t.gallery.label}</p>
-          <h2 className="font-script text-5xl sm:text-6xl text-gold-dark mb-4">{t.gallery.title}</h2>
+          <h2 className="font-script text-4xl sm:text-6xl text-gold-dark mb-4 break-words w-full">{t.gallery.title}</h2>
           <div className="flex items-center justify-center gap-4">
             <div className="w-16 h-px bg-gold/40" />
             <svg className="w-3 h-3 text-gold/60" viewBox="0 0 24 24" fill="currentColor">
@@ -105,9 +105,8 @@ export default function Gallery() {
           </div>
         </div>
 
-        {/* Desktop grid */}
         <div
-          className="hidden sm:grid gap-3"
+          className="grid gap-3"
           style={{
             gridTemplateColumns: 'repeat(3, 1fr)',
             gridTemplateRows: '220px 220px 220px',
@@ -121,27 +120,6 @@ export default function Gallery() {
               delay={i * 100}
               onClick={() => setLightbox(img)}
             />
-          ))}
-        </div>
-
-        {/* Mobile grid — simple 2-col */}
-        <div className="sm:hidden grid grid-cols-2 gap-3">
-          {galleryImages.map((img, i) => (
-            <div
-              key={img.src}
-              className={`relative overflow-hidden rounded-2xl cursor-pointer ${
-                i === 0 ? 'col-span-2 h-64' : 'h-48'
-              }`}
-              onClick={() => setLightbox(img)}
-            >
-              <img
-                src={img.src}
-                alt={img.alt}
-                style={{ objectPosition: img.position ?? 'center' }}
-                className="w-full h-full object-cover"
-                loading="lazy"
-              />
-            </div>
           ))}
         </div>
       </div>
