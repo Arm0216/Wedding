@@ -32,7 +32,7 @@ declare global {
 export default function MusicPlayer() {
   const { t } = useLang()
   const m = t.music
-  const playerRef = useRef<ReturnType<typeof window.YT.Player> | null>(null)
+  const playerRef = useRef<InstanceType<typeof window.YT.Player> | null>(null)
   const [isPlaying, setIsPlaying] = useState(false)
   const [isReady, setIsReady] = useState(false)
   const [showPrompt, setShowPrompt] = useState(false)

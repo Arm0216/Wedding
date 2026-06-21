@@ -16,7 +16,7 @@ export default function Hero() {
         <video
           className="absolute inset-0 w-full h-full object-cover scale-110"
           style={{ filter: 'blur(18px)', opacity: 0.6 }}
-          src="/images/hero-video.mp4"
+          src={`${import.meta.env.BASE_URL}images/hero-video.mp4`}
           autoPlay
           loop
           muted
@@ -26,7 +26,7 @@ export default function Hero() {
         {/* Crisp video — natural size, centered */}
         <video
           className="absolute inset-0 w-full h-full object-contain"
-          src="/images/hero-video.mp4"
+          src={`${import.meta.env.BASE_URL}images/hero-video.mp4`}
           autoPlay
           loop
           muted
