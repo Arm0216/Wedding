@@ -66,11 +66,11 @@ export default function Hero() {
         <div className="w-full max-w-xs sm:max-w-md flex flex-col items-center gap-3">
           <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-1 sm:gap-6">
             <span className="font-sans text-xs sm:text-sm tracking-widest uppercase text-champagne/90">
-              {coupleData.displayDate}
+              {t.hero.date}
             </span>
             <span className="hidden sm:block w-1 h-1 rounded-full bg-gold/60" />
             <span className="font-sans text-xs sm:text-sm tracking-widest uppercase text-champagne/90 text-center">
-              {coupleData.venue}, {coupleData.location}
+              {t.hero.venue}
             </span>
           </div>
           <div className="w-24 h-px bg-gold/40" />

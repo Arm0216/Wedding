@@ -15,6 +15,8 @@ export const translations = {
       preTitle: 'We are getting married',
       tagline: 'Two souls, one love story.',
       explore: 'Explore',
+      date: 'August 1, 2026',
+      venue: 'Granada Hall, Hrazdan, Armenia',
     },
 
     // Love Letter
@@ -135,6 +137,8 @@ export const translations = {
       preTitle: 'Մենք ամուսնանում ենք',
       tagline: 'Երկու հոգի, մեկ սիրո պատմություն։',
       explore: 'Ուսումնասիրել',
+      date: 'Օգոստոսի 1, 2026',
+      venue: 'Granada Hall, Հրազդան, Հայաստան',
     },
 
     // Love Letter
