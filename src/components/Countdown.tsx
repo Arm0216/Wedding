@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { coupleData } from '../data/weddingData'
+import { useLang } from '../context/LanguageContext'
 
 interface TimeLeft {
   days: number
@@ -36,6 +37,8 @@ function Unit({ value, label }: { value: number; label: string }) {
 
 export default function Countdown() {
   const [time, setTime] = useState<TimeLeft>(getTimeLeft())
+  const { t } = useLang()
+  const c = t.countdown
 
   useEffect(() => {
     const id = setInterval(() => setTime(getTimeLeft()), 1000)
@@ -47,20 +50,20 @@ export default function Countdown() {
   if (isPast) {
     return (
       <p className="font-script text-3xl text-white/90 animate-pulse-soft">
-        We are married! 🎉
+        {c.married}
       </p>
     )
   }
 
   return (
     <div className="flex items-end gap-2 sm:gap-3">
-      <Unit value={time.days} label="Days" />
+      <Unit value={time.days} label={c.days} />
       <span className="text-white/60 text-base sm:text-2xl mb-6 sm:mb-8 font-light">:</span>
-      <Unit value={time.hours} label="Hours" />
+      <Unit value={time.hours} label={c.hours} />
       <span className="text-white/60 text-base sm:text-2xl mb-6 sm:mb-8 font-light">:</span>
-      <Unit value={time.minutes} label="Mins" />
+      <Unit value={time.minutes} label={c.mins} />
       <span className="text-white/60 text-base sm:text-2xl mb-6 sm:mb-8 font-light">:</span>
-      <Unit value={time.seconds} label="Secs" />
+      <Unit value={time.seconds} label={c.secs} />
     </div>
   )
 }

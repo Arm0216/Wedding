@@ -108,6 +108,15 @@ export const translations = {
       madeWith: 'Made with love',
     },
 
+    // Countdown
+    countdown: {
+      days: 'Days',
+      hours: 'Hours',
+      mins: 'Mins',
+      secs: 'Secs',
+      married: 'We are married! 🎉',
+    },
+
     // Loading
     loading: 'Preparing something beautiful...',
   },
@@ -217,6 +226,15 @@ export const translations = {
         '«Սերը համբերատար է, սերը բարի է… ուրախանում է ճշմարտությամբ, ամեն ինչ համբերում է, ամեն ինչ հավատում է, ամեն ինչ հուսում է, ամեն ինչ դիմանում է»։',
       verse: 'Կորնթացիս 13:4–7',
       madeWith: 'Սարքված սիրով',
+    },
+
+    // Countdown
+    countdown: {
+      days: 'Օր',
+      hours: 'Ժամ',
+      mins: 'Րոպե',
+      secs: 'Վայրկյան',
+      married: 'Մենք ամուսնացած ենք! 🎉',
     },
 
     // Loading
