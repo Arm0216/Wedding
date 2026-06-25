@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Navigation from './components/Navigation'
 import Hero from './components/Hero'
 import LoveLetter from './components/LoveLetter'
+import WeddingCalendar from './components/WeddingCalendar'
 import Gallery from './components/Gallery'
 import Timeline from './components/Timeline'
 import Footer from './components/Footer'
@@ -50,6 +51,7 @@ export default function App() {
         <main>
           <Hero />
           <LoveLetter />
+          <WeddingCalendar />
           <Gallery />
           <Timeline />
         </main>
