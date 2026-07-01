@@ -47,11 +47,10 @@ export const translations = {
       title: 'Wedding Day',
       subtitle: 'A day filled with love, laughter, and memories.',
       items: [
-        { time: '12:00', title: 'Haghartsin', subtitle: 'Dilijan', icon: '⛪' },
-        { time: '13:30', title: 'Photo Shoot', subtitle: 'Zartak Ranch', icon: '📸' },
-        { time: '15:00', title: "Groom's House", subtitle: 'Sevan, Nalbandyan 39', icon: '🏠' },
+        { time: '13:00', title: 'Haghartsin', subtitle: 'Dilijan', icon: '⛪' },
+        { time: '14:00', title: 'Photo Shoot', subtitle: 'Zartak Ranch', icon: '📸' },
+        { time: '15:30', title: "Groom's House", subtitle: 'Sevan, Nalbandyan 39', icon: '🏠' },
         { time: '17:00', title: 'Restaurant', subtitle: 'Granada Hall, Hrazdan', icon: '🥂' },
-        { time: '21:00', title: 'DJ', subtitle: '', icon: '🎧' },
       ],
     },
 
@@ -169,11 +168,10 @@ export const translations = {
       title: 'Հարսանիքի Օրը',
       subtitle: 'Մի օր լի սիրով, ծիծաղով եւ հիշողություններով։',
       items: [
-        { time: 'Ժ. 12:00', title: 'Հաղարծին', subtitle: 'Դիլիջան', icon: '⛪' },
-        { time: 'Ժ. 13:30', title: 'Ֆոտոշութ', subtitle: 'Zartak Ranch', icon: '📸' },
-        { time: 'Ժ. 15:00', title: 'Փեսայի տուն', subtitle: 'Սևան, Նալբանդյան 39', icon: '🏠' },
+        { time: 'Ժ. 13:00', title: 'Հաղարծին', subtitle: 'Դիլիջան', icon: '⛪' },
+        { time: 'Ժ. 14:00', title: 'Ֆոտոշութ', subtitle: 'Zartak Ranch', icon: '📸' },
+        { time: 'Ժ. 15:30', title: 'Փեսայի տուն', subtitle: 'Սևան, Նալբանդյան 39', icon: '🏠' },
         { time: 'Ժ. 17:00', title: 'Ռեստորան', subtitle: 'Granada Hall, Հրազդան', icon: '🥂' },
-        { time: 'Ժ. 21:00', title: 'Դիջեյ', subtitle: '', icon: '🎧' },
       ],
     },
 
