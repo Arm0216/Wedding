@@ -40,6 +40,11 @@ export default function MusicPlayer() {
 
   useEffect(() => {
     const timer = setTimeout(() => setVisible(true), 2000)
+    // Show prompt after 3s if music hasn't auto-started (covers Android/mobile)
+    const promptTimer = setTimeout(() => {
+      if (!isPlaying) setShowPrompt(true)
+    }, 3000)
+
     const tag = document.createElement('script')
     tag.src = 'https://www.youtube.com/iframe_api'
     document.head.appendChild(tag)
@@ -57,7 +62,7 @@ export default function MusicPlayer() {
                 const state = e.target.getPlayerState()
                 if (state !== window.YT.PlayerState.PLAYING) setShowPrompt(true)
                 else setIsPlaying(true)
-              }, 800)
+              }, 1200)
             } catch { setShowPrompt(true) }
           },
           onStateChange: (e) => {
@@ -68,7 +73,7 @@ export default function MusicPlayer() {
         },
       })
     }
-    return () => { clearTimeout(timer); playerRef.current?.destroy() }
+    return () => { clearTimeout(timer); clearTimeout(promptTimer); playerRef.current?.destroy() }
   }, [])
 
   const toggle = () => {
