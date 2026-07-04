@@ -29,8 +29,6 @@ export default function Footer() {
           <div className="flex-1 h-px bg-gold/20" />
         </div>
 
-        <p className="font-serif italic text-white/40 text-sm max-w-sm leading-relaxed">{t.footer.quote}</p>
-        <p className="font-sans text-xs text-white/25 tracking-widest uppercase">{t.footer.verse}</p>
         <p className="font-sans text-xs text-white/25 mt-4">{t.footer.madeWith} · {coupleData.displayDate}</p>
       </div>
     </footer>
