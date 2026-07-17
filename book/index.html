@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="hy">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Կյանքը ներսից — Կամո Պողոսյան</title>
+  <meta name="description" content="«Կյանքը ներսից» — 17 քայլ դեպի ներքին ազատություն։ Կամո Պողոսյանի գիրքը ինքնաճանաչման, ներդաշնակության և ներքին խաղաղության մասին։" />
+  <meta property="og:title" content="Կյանքը ներսից — Կամո Պողոսյան" />
+  <meta property="og:description" content="17 քայլ դեպի ներքին ազատություն։" />
+  <meta property="og:image" content="assets/book-photo.jpg" />
+  <meta property="og:type" content="book" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Armenian:wght@300;400;500;600;700&family=Noto+Sans+Armenian:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --forest: #2f3d2c;
+      --forest-deep: #212c1f;
+      --moss: #4f6544;
+      --sage: #8ea27a;
+      --sage-soft: #b9c6a8;
+      --paper: #f6f3ea;
+      --paper-2: #efeadd;
+      --cream: #fbfaf5;
+      --gold: #b98f3e;
+      --gold-soft: #d9b978;
+      --ink: #2a2b26;
+      --ink-soft: #55584e;
+      --line: rgba(47, 61, 44, 0.14);
+      --serif: 'Noto Serif Armenian', Georgia, serif;
+      --sans: 'Noto Sans Armenian', system-ui, sans-serif;
+      --wrap: 1180px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+    body {
+      font-family: var(--sans);
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .serif { font-family: var(--serif); font-weight: 500; }
+
+    ::selection { background: var(--sage-soft); color: var(--forest-deep); }
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 28px; }
+
+    .eyebrow {
+      font-size: 13px;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 30px;
+      border-radius: 100px;
+      font-family: var(--sans);
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s, background .35s, color .35s;
+    }
+    .btn-primary {
+      background: var(--forest);
+      color: var(--cream);
+      box-shadow: 0 14px 30px -12px rgba(47,61,44,.6);
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 22px 40px -14px rgba(47,61,44,.65); background: var(--forest-deep); }
+    .btn-ghost { border-color: var(--line); color: var(--forest); background: transparent; }
+    .btn-ghost:hover { border-color: var(--moss); background: rgba(79,101,68,.06); transform: translateY(-3px); }
+
+    /* ---------- NAV ---------- */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 28px;
+      transition: background .4s, box-shadow .4s, padding .4s;
+      max-width: 100%;
+    }
+    nav.scrolled {
+      background: rgba(246,243,234,.86);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 1px 0 var(--line);
+      padding: 14px 28px;
+    }
+    .brand { font-family: var(--serif); font-weight: 600; font-size: 20px; letter-spacing: .01em; color: var(--forest); }
+    .brand span { color: var(--gold); }
+    .nav-links { display: flex; gap: 34px; align-items: center; }
+    .nav-links a { font-size: 14.5px; color: var(--ink-soft); position: relative; font-weight: 500; }
+    .nav-links a::after {
+      content: ''; position: absolute; left: 0; bottom: -5px; height: 1.5px; width: 0;
+      background: var(--gold); transition: width .3s;
+    }
+    .nav-links a:hover { color: var(--forest); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta { padding: 10px 22px; font-size: 14px; }
+    @media (max-width: 860px) { .nav-links a:not(.nav-cta) { display: none; } }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+      gap: 40px;
+      max-width: var(--wrap);
+      margin: 0 auto;
+      padding: 150px 28px 90px;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: -2;
+      background:
+        radial-gradient(120% 90% at 78% 15%, rgba(142,162,122,.28), transparent 55%),
+        radial-gradient(90% 80% at 0% 100%, rgba(185,143,62,.12), transparent 60%),
+        linear-gradient(180deg, var(--cream), var(--paper));
+    }
+    .hero-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(47,61,44,.05) 1px, transparent 1px);
+      background-size: 26px 26px; opacity: .5;
+    }
+    .hero-copy { max-width: 560px; }
+    .hero .eyebrow { margin-bottom: 22px; display: inline-block; }
+    .hero h1 {
+      font-size: clamp(52px, 8vw, 96px);
+      line-height: .96;
+      font-weight: 600;
+      color: var(--forest-deep);
+      letter-spacing: -0.01em;
+      margin-bottom: 20px;
+    }
+    .hero h1 em { font-style: italic; color: var(--moss); font-weight: 400; }
+    .hero-sub {
+      font-family: var(--serif);
+      font-size: clamp(19px, 2.4vw, 24px);
+      color: var(--moss);
+      font-weight: 400;
+      margin-bottom: 26px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .hero-sub .num {
+      font-size: 34px; font-weight: 700; color: var(--gold);
+      line-height: 1;
+    }
+    .hero-lead { font-size: 17.5px; color: var(--ink-soft); margin-bottom: 36px; max-width: 460px; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .hero-meta { margin-top: 40px; display: flex; gap: 30px; align-items: center; flex-wrap: wrap; }
+    .hero-meta .item { }
+    .hero-meta .k { font-family: var(--serif); font-size: 26px; font-weight: 600; color: var(--forest); line-height: 1; }
+    .hero-meta .v { font-size: 12.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-soft); margin-top: 6px; }
+    .hero-meta .divider { width: 1px; height: 40px; background: var(--line); }
+
+    /* Book visual */
+    .hero-visual { position: relative; justify-self: center; }
+    .book-frame {
+      position: relative;
+      width: min(430px, 80vw);
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 40px 80px -30px rgba(33,44,31,.55), 0 12px 30px -18px rgba(33,44,31,.4);
+      transform: perspective(1400px) rotateY(-8deg) rotateX(2deg);
+      transition: transform .8s cubic-bezier(.2,.8,.2,1);
+    }
+    .book-frame:hover { transform: perspective(1400px) rotateY(-3deg) rotateX(0deg); }
+    .book-frame img { width: 100%; display: block; }
+    .book-frame::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(115deg, rgba(255,255,255,.18), transparent 40%);
+    }
+    .visual-badge {
+      position: absolute; bottom: -22px; left: -26px;
+      background: var(--cream);
+      border: 1px solid var(--line);
+      border-radius: 100px;
+      padding: 12px 22px;
+      font-family: var(--serif);
+      font-size: 15px; color: var(--forest);
+      box-shadow: 0 20px 40px -22px rgba(33,44,31,.5);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .visual-badge b { color: var(--gold); }
+    .leaf {
+      position: absolute; z-index: -1; color: var(--sage);
+      opacity: .5;
+    }
+    .leaf.a { top: -30px; right: -30px; width: 90px; transform: rotate(20deg); }
+    .leaf.b { bottom: 40px; right: -50px; width: 70px; opacity:.35; transform: rotate(-30deg); }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; text-align: center; padding-top: 130px; gap: 60px; }
+      .hero-copy { margin: 0 auto; }
+      .hero-sub, .hero-actions, .hero-meta { justify-content: center; }
+      .hero .eyebrow { display: inline-block; }
+      .book-frame { transform: none; }
+      .book-frame:hover { transform: translateY(-6px); }
+    }
+
+    /* ---------- SECTION SHELL ---------- */
+    section.block { padding: 110px 0; position: relative; }
+    .section-head { max-width: 680px; margin-bottom: 62px; }
+    .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+    .section-head .eyebrow { display: inline-block; margin-bottom: 18px; }
+    .section-head h2 {
+      font-size: clamp(34px, 5vw, 52px);
+      line-height: 1.08;
+      color: var(--forest-deep);
+      letter-spacing: -0.01em;
+    }
+    .section-head p { margin-top: 20px; font-size: 17.5px; color: var(--ink-soft); }
+
+    /* ---------- ABOUT ---------- */
+    .about { background: var(--cream); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
+    .about-text p { font-size: 18px; color: var(--ink-soft); margin-bottom: 22px; }
+    .about-text p.lead { font-family: var(--serif); font-size: 25px; line-height: 1.5; color: var(--forest); font-weight: 400; }
+    .about-text strong { color: var(--forest); font-weight: 600; }
+    .about-quote {
+      position: relative;
+      background: var(--forest);
+      color: var(--paper);
+      border-radius: 20px;
+      padding: 50px 46px;
+      box-shadow: 0 40px 80px -40px rgba(33,44,31,.7);
+    }
+    .about-quote .mark { font-family: var(--serif); font-size: 90px; line-height: .5; color: var(--gold-soft); opacity: .8; height: 40px; display: block; }
+    .about-quote blockquote { font-family: var(--serif); font-size: 24px; line-height: 1.5; font-weight: 400; margin: 10px 0 26px; }
+    .about-quote cite { font-style: normal; font-size: 14px; letter-spacing: .12em; text-transform: uppercase; color: var(--sage-soft); }
+    @media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; gap: 44px; } }
+
+    /* ---------- THEMES ---------- */
+    .themes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .theme-card {
+      background: var(--cream);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 34px 30px;
+      transition: transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s, border-color .4s;
+    }
+    .theme-card:hover { transform: translateY(-8px); box-shadow: 0 30px 55px -30px rgba(33,44,31,.4); border-color: transparent; }
+    .theme-ic {
+      width: 52px; height: 52px; border-radius: 14px;
+      display: grid; place-items: center; margin-bottom: 22px;
+      background: linear-gradient(135deg, rgba(142,162,122,.22), rgba(185,143,62,.14));
+      color: var(--moss);
+    }
+    .theme-ic svg { width: 26px; height: 26px; }
+    .theme-card h3 { font-size: 21px; color: var(--forest-deep); margin-bottom: 10px; }
+    .theme-card p { font-size: 15.5px; color: var(--ink-soft); }
+    @media (max-width: 860px) { .themes-grid { grid-template-columns: 1fr; } }
+
+    /* ---------- JOURNEY / 17 STEPS ---------- */
+    .journey { background: linear-gradient(180deg, var(--paper), var(--paper-2)); }
+    .steps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px 40px; margin-top: 10px; }
+    .step {
+      display: flex; gap: 22px; align-items: flex-start;
+      padding: 22px 4px;
+      border-bottom: 1px solid var(--line);
+    }
+    .step .n {
+      font-family: var(--serif);
+      font-size: 30px; font-weight: 600;
+      color: var(--gold);
+      min-width: 46px; line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+    .step .body h3 { font-size: 18.5px; color: var(--forest-deep); font-weight: 600; margin-bottom: 3px; }
+    .step .body p { font-size: 14.5px; color: var(--ink-soft); }
+    @media (max-width: 760px) { .steps { grid-template-columns: 1fr; gap: 0; } }
+
+    .journey-note {
+      margin-top: 46px; text-align: center;
+      font-size: 14px; color: var(--ink-soft);
+    }
+
+    /* ---------- QUOTE BANNER ---------- */
+    .banner {
+      position: relative;
+      background: var(--forest-deep);
+      color: var(--paper);
+      padding: 130px 0;
+      overflow: hidden;
+    }
+    .banner::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(70% 120% at 80% 0%, rgba(142,162,122,.28), transparent 55%),
+                  radial-gradient(60% 90% at 10% 100%, rgba(185,143,62,.18), transparent 55%);
+    }
+    .banner .wrap { position: relative; text-align: center; }
+    .banner .eyebrow { color: var(--gold-soft); }
+    .banner blockquote {
+      font-family: var(--serif);
+      font-size: clamp(28px, 4.4vw, 46px);
+      line-height: 1.32; font-weight: 400;
+      max-width: 900px; margin: 24px auto 0;
+    }
+    .banner blockquote em { color: var(--gold-soft); font-style: italic; }
+
+    /* ---------- AUTHOR ---------- */
+    .author { background: var(--cream); }
+    .author-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 60px; align-items: center; }
+    .author-photo {
+      position: relative;
+      aspect-ratio: 4/5;
+      border-radius: 20px;
+      background:
+        radial-gradient(120% 120% at 30% 10%, rgba(142,162,122,.35), transparent 60%),
+        linear-gradient(160deg, var(--sage-soft), var(--moss));
+      display: grid; place-items: center;
+      overflow: hidden;
+      box-shadow: 0 40px 80px -44px rgba(33,44,31,.6);
+    }
+    .author-photo .initials { font-family: var(--serif); font-size: 90px; color: rgba(251,250,245,.9); font-weight: 600; }
+    .author-photo .tag { position: absolute; bottom: 18px; left: 18px; font-size: 12px; letter-spacing:.1em; text-transform: uppercase; color: rgba(251,250,245,.85); }
+    .author-body .eyebrow { display:inline-block; margin-bottom: 14px; }
+    .author-body h2 { font-size: clamp(30px, 4.4vw, 44px); color: var(--forest-deep); margin-bottom: 8px; }
+    .author-body .role { font-family: var(--serif); font-style: italic; color: var(--moss); font-size: 19px; margin-bottom: 24px; }
+    .author-body p { font-size: 17px; color: var(--ink-soft); margin-bottom: 18px; }
+    @media (max-width: 860px) { .author-grid { grid-template-columns: 1fr; gap: 40px; } .author-photo { max-width: 320px; } }
+
+    /* ---------- ORDER ---------- */
+    .order { background: var(--paper); }
+    .order-card {
+      display: grid; grid-template-columns: 1fr 1fr;
+      background: var(--cream);
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      overflow: hidden;
+      box-shadow: 0 50px 90px -50px rgba(33,44,31,.5);
+    }
+    .order-left { padding: 60px 54px; }
+    .order-left .eyebrow { display:inline-block; margin-bottom: 16px; }
+    .order-left h2 { font-size: clamp(30px, 4vw, 42px); color: var(--forest-deep); margin-bottom: 16px; line-height: 1.1; }
+    .order-left p { font-size: 16.5px; color: var(--ink-soft); margin-bottom: 30px; }
+    .price { display: flex; align-items: baseline; gap: 12px; margin-bottom: 30px; }
+    .price .amt { font-family: var(--serif); font-size: 46px; font-weight: 600; color: var(--forest); }
+    .price .cur { font-size: 18px; color: var(--ink-soft); }
+    .price .note { font-size: 13px; color: var(--gold); background: rgba(185,143,62,.1); padding: 5px 12px; border-radius: 100px; margin-left: 6px; }
+    .order-list { list-style: none; margin-bottom: 34px; }
+    .order-list li { display: flex; gap: 12px; align-items: center; font-size: 15.5px; color: var(--ink-soft); padding: 7px 0; }
+    .order-list svg { width: 20px; height: 20px; color: var(--moss); flex-shrink: 0; }
+    .order-right {
+      position: relative;
+      background: linear-gradient(160deg, var(--forest), var(--forest-deep));
+      display: grid; place-items: center;
+      padding: 40px;
+    }
+    .order-right .mini-book {
+      width: 62%;
+      border-radius: 6px;
+      box-shadow: 0 30px 60px -22px rgba(0,0,0,.6);
+      transform: rotate(-4deg);
+    }
+    @media (max-width: 860px) { .order-card { grid-template-columns: 1fr; } .order-left { padding: 46px 32px; } .order-right { padding: 50px; order: -1; } }
+
+    /* ---------- FOOTER ---------- */
+    footer { background: var(--forest-deep); color: var(--sage-soft); padding: 64px 0 40px; }
+    .foot-grid { display: flex; justify-content: space-between; align-items: flex-start; gap: 40px; flex-wrap: wrap; }
+    .foot-brand { font-family: var(--serif); font-size: 26px; color: var(--paper); font-weight: 600; }
+    .foot-brand span { color: var(--gold-soft); }
+    .foot-tag { margin-top: 10px; font-size: 14.5px; max-width: 280px; }
+    .foot-links { display: flex; gap: 40px; flex-wrap: wrap; }
+    .foot-col h4 { font-family: var(--sans); font-size: 12.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--sage); margin-bottom: 14px; font-weight: 600; }
+    .foot-col a { display: block; font-size: 14.5px; color: var(--sage-soft); padding: 4px 0; transition: color .3s; }
+    .foot-col a:hover { color: var(--paper); }
+    .foot-bottom { margin-top: 48px; padding-top: 24px; border-top: 1px solid rgba(142,162,122,.2); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 13px; color: var(--sage); }
+
+    /* ---------- REVEAL ---------- */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s cubic-bezier(.2,.8,.2,1), transform .9s cubic-bezier(.2,.8,.2,1); }
+    .reveal.in { opacity: 1; transform: none; }
+    .reveal.d1 { transition-delay: .08s; }
+    .reveal.d2 { transition-delay: .16s; }
+    .reveal.d3 { transition-delay: .24s; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="#top" class="brand">Կյանքը <span>ներսից</span></a>
+    <div class="nav-links">
+      <a href="#about">Գիրքը</a>
+      <a href="#themes">Թեմաներ</a>
+      <a href="#journey">17 քայլ</a>
+      <a href="#author">Հեղինակը</a>
+      <a href="#order" class="btn btn-primary nav-cta">Պատվիրել</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero" id="top">
+    <div class="hero-bg"></div>
+    <div class="hero-copy">
+      <span class="eyebrow reveal">Կամո Պողոսյան</span>
+      <h1 class="reveal d1">Կյանքը<br><em>ներսից</em></h1>
+      <div class="hero-sub reveal d1"><span class="num">17</span> քայլ դեպի ներքին ազատություն</div>
+      <p class="hero-lead reveal d2">Ճանապարհ դեպի ինքդ քեզ․ գիրք, որ օգնում է լսել ներքին ձայնը, ազատվել ավելորդ ծանրությունից և վերագտնել խաղաղությունը՝ հենց ներսում։</p>
+      <div class="hero-actions reveal d2">
+        <a href="#order" class="btn btn-primary">Պատվիրել գիրքը →</a>
+        <a href="#about" class="btn btn-ghost">Իմանալ ավելին</a>
+      </div>
+      <div class="hero-meta reveal d3">
+        <div class="item"><div class="k">17</div><div class="v">Քայլ</div></div>
+        <div class="divider"></div>
+        <div class="item"><div class="k">Հայերեն</div><div class="v">Բնագիր</div></div>
+        <div class="divider"></div>
+        <div class="item"><div class="k">Կոշտ</div><div class="v">Կազմ</div></div>
+      </div>
+    </div>
+    <div class="hero-visual reveal d2">
+      <svg class="leaf a" viewBox="0 0 24 24" fill="currentColor"><path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75C7 8 17 8 17 8z"/></svg>
+      <div class="book-frame">
+        <img src="assets/book-photo.jpg" alt="«Կյանքը ներսից» գրքի կազմը՝ Կամո Պողոսյան" />
+      </div>
+      <div class="visual-badge"><b>★</b> Նոր հրատարակություն</div>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section class="block about" id="about">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Գրքի մասին</span>
+        <h2>Ճամփորդություն դեպի ինքդ քեզ</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text reveal d1">
+          <p class="lead">Ամենակարևոր ճանապարհը ոչ թե դրսում է, այլ՝ ներսում։</p>
+          <p>«Կյանքը ներսից» գիրքը հրավեր է կանգ առնելու աղմկոտ առօրյայի մեջ և նայելու ներս։ Այն խոսում է այն մասին, թե ինչպես ենք մենք հաճախ ապրում ուրիշների ակնկալիքներով՝ մոռանալով սեփական ձայնը լսել։</p>
+          <p>Էջ առ էջ, հեղինակը՝ <strong>Կամո Պողոսյանը</strong>, առաջարկում է պարզ, բայց խորը քայլեր՝ ինքնաճանաչման, ներքին ազատության և հոգու հանդարտության համար։ Սա ինքնազարգացման ձեռնարկ չէ, այլ՝ անկեղծ զրույց ընթերցողի հետ։</p>
+          <p>Այս գիրքը նրանց համար է, ովքեր զգում են, որ ժամանակն է վերադառնալ դեպի իրենք իրենք։</p>
+        </div>
+        <div class="about-quote reveal d2">
+          <span class="mark">„</span>
+          <blockquote>Ազատությունը սկսվում է այն պահից, երբ դադարում ես փախչել ինքդ քեզնից և սկսում ես լսել լռությունը ներսում։</blockquote>
+          <cite>— Գրքից</cite>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THEMES -->
+  <section class="block" id="themes">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Ինչի՞ մասին է գիրքը</span>
+        <h2>Ներքին ազատության հիմնաքարերը</h2>
+        <p>Չորս էական ուղղություն, որոնց միջով անցնում է ընթերցողը՝ քայլ առ քայլ մոտենալով իրական ինքն իրեն։</p>
+      </div>
+      <div class="themes-grid">
+        <div class="theme-card reveal d1">
+          <div class="theme-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3a4 4 0 0 0-4 4c0 1.5.8 2.5 1.5 3.5C10 11.5 10 13 10 14h4c0-1 0-2.5.5-3.5C15.2 9.5 16 8.5 16 7a4 4 0 0 0-4-4Z"/><path d="M10 17h4M10.5 20h3"/></svg></div>
+          <h3>Ինքնաճանաչում</h3>
+          <p>Հասկանալ, թե ով ես իրականում՝ դիմակների և սոցիալական դերերի հետևում։</p>
+        </div>
+        <div class="theme-card reveal d1">
+          <div class="theme-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <h3>Ներկա պահը</h3>
+          <p>Ապրել այստեղ և հիմա՝ ազատվելով անցյալի ցավից և ապագայի անհանգստությունից։</p>
+        </div>
+        <div class="theme-card reveal d2">
+          <div class="theme-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20.8 6.6a5 5 0 0 0-7.1 0L12 8.3l-1.7-1.7a5 5 0 1 0-7.1 7.1L12 22l8.8-8.3a5 5 0 0 0 0-7.1Z"/></svg></div>
+          <h3>Ազատում</h3>
+          <p>Բաց թողնել վիրավորանքը, վախն ու ավելորդ ծանրությունը, որ կրում ես տարիներով։</p>
+        </div>
+        <div class="theme-card reveal d3">
+          <div class="theme-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s-7-4.35-9.5-9C1 9 2.5 5 6 5c2 0 3.2 1.2 4 2.5C10.8 6.2 12 5 14 5c3.5 0 5 4 3.5 7-1 2-2.5 3.5-5.5 9Z"/></svg></div>
+          <h3>Ներդաշնակություն</h3>
+          <p>Գտնել հավասարակշռություն մտքի, զգացմունքի և հոգու միջև՝ խաղաղ ապրելու համար։</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOURNEY -->
+  <section class="block journey" id="journey">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <span class="eyebrow">Ճանապարհի քարտեզը</span>
+        <h2>17 քայլ դեպի ներսը</h2>
+        <p>Յուրաքանչյուր քայլ առանձին գլուխ է՝ փոքր, կարդալի և կիրառելի։ Միասին դրանք կազմում են մեկ ամբողջական ճանապարհ։</p>
+      </div>
+      <!-- Քայլերի անվանումները թեմատիկ ուղեցույց են և կարող են հարմարեցվել գրքի բովանդակությանը -->
+      <div class="steps">
+        <div class="step reveal"><div class="n">01</div><div class="body"><h3>Կանգ առնել</h3><p>Դադար տալ վազքին և նկատել սեփական կյանքը։</p></div></div>
+        <div class="step reveal"><div class="n">02</div><div class="body"><h3>Լսել լռությունը</h3><p>Գտնել ձայնը, որ խեղդվում է աղմուկի մեջ։</p></div></div>
+        <div class="step reveal"><div class="n">03</div><div class="body"><h3>Ընդունել ինքդ քեզ</h3><p>Հանդիպել ինքդ քեզ առանց դատողության։</p></div></div>
+        <div class="step reveal"><div class="n">04</div><div class="body"><h3>Ազատվել վախից</h3><p>Ճանաչել վախերն ու դադարել փախչել դրանցից։</p></div></div>
+        <div class="step reveal"><div class="n">05</div><div class="body"><h3>Ներել</h3><p>Բաց թողնել անցյալի ծանրությունը՝ քեզ և ուրիշներին։</p></div></div>
+        <div class="step reveal"><div class="n">06</div><div class="body"><h3>Ապրել ներկայում</h3><p>Վերադառնալ այստեղ և հիմա պահին։</p></div></div>
+        <div class="step reveal"><div class="n">07</div><div class="body"><h3>Երախտագիտություն</h3><p>Տեսնել առատությունը, որ արդեն կա։</p></div></div>
+        <div class="step reveal"><div class="n">08</div><div class="body"><h3>Սահմաններ դնել</h3><p>Սովորել ասել «ոչ»՝ առանց մեղքի զգացման։</p></div></div>
+        <div class="step reveal"><div class="n">09</div><div class="body"><h3>Վստահել</h3><p>Հանձնվել կյանքի հոսքին և ընթացքին։</p></div></div>
+        <div class="step reveal"><div class="n">10</div><div class="body"><h3>Պարզություն</h3><p>Ազատվել ավելորդից՝ մտքում և կյանքում։</p></div></div>
+        <div class="step reveal"><div class="n">11</div><div class="body"><h3>Ինքնախնամք</h3><p>Վերաբերվել ինքդ քեզ որպես մտերիմ ընկերոջ։</p></div></div>
+        <div class="step reveal"><div class="n">12</div><div class="body"><h3>Զգացմունքներ</h3><p>Ապրել զգացմունքները՝ առանց դրանցից փախչելու։</p></div></div>
+        <div class="step reveal"><div class="n">13</div><div class="body"><h3>Կապ ուրիշների հետ</h3><p>Կառուցել անկեղծ ու խորը հարաբերություններ։</p></div></div>
+        <div class="step reveal"><div class="n">14</div><div class="body"><h3>Իմաստ գտնել</h3><p>Հասկանալ՝ ինչն է իսկապես կարևոր քեզ համար։</p></div></div>
+        <div class="step reveal"><div class="n">15</div><div class="body"><h3>Համբերություն</h3><p>Վստահել, որ ամեն ինչ ունի իր ժամանակը։</p></div></div>
+        <div class="step reveal"><div class="n">16</div><div class="body"><h3>Ներքին խաղաղություն</h3><p>Գտնել հանգիստը՝ անկախ արտաքին հանգամանքներից։</p></div></div>
+        <div class="step reveal"><div class="n">17</div><div class="body"><h3>Ազատություն</h3><p>Ապրել լիարժեք՝ ներսից դուրս։</p></div></div>
+      </div>
+      <p class="journey-note reveal">17 քայլ, մեկ ճանապարհ — դեպի այն ազատությունը, որ միշտ եղել է ներսում։</p>
+    </div>
+  </section>
+
+  <!-- QUOTE BANNER -->
+  <section class="banner">
+    <div class="wrap">
+      <span class="eyebrow reveal">Գրքի ոգին</span>
+      <blockquote class="reveal d1">«Երբ դու փոխվում ես <em>ներսից</em>, փոխվում է քո ամբողջ աշխարհը՝ դրսում»։</blockquote>
+    </div>
+  </section>
+
+  <!-- AUTHOR -->
+  <section class="block author" id="author">
+    <div class="wrap">
+      <div class="author-grid">
+        <div class="author-photo reveal">
+          <span class="initials">ԿՊ</span>
+          <span class="tag">Կամո Պողոսյան</span>
+        </div>
+        <div class="author-body reveal d1">
+          <span class="eyebrow">Հեղինակը</span>
+          <h2>Կամո Պողոսյան</h2>
+          <div class="role">Գրող · Ինքնաճանաչման ուղեկից</div>
+          <p>Կամո Պողոսյանը գրում է ամենակարևոր, բայց հաճախ անտեսվող թեմայի մասին՝ մարդու ներաշխարհը։ Նրա խոսքը պարզ է, անկեղծ և մոտ՝ ամեն ընթերցողի համար։</p>
+          <p>«Կյանքը ներսից» գիրքը ծնվել է անձնական որոնումներից և այն համոզմունքից, որ իրական փոփոխությունը սկսվում է ներսից։ Այն հրավեր է՝ դանդաղեցնել քայլերը և վերագտնել կապը սեփական հոգու հետ։</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORDER -->
+  <section class="block order" id="order">
+    <div class="wrap">
+      <div class="order-card reveal">
+        <div class="order-left">
+          <span class="eyebrow">Ձեռք բերել</span>
+          <h2>Սկսի՛ր քո ճանապարհը այսօր</h2>
+          <p>«Կյանքը ներսից»-ը՝ քո ձեռքում։ Կոշտ կազմով, հայերեն բնագիր հրատարակություն։</p>
+          <div class="price">
+            <span class="amt">5 900</span>
+            <span class="cur">֏</span>
+            <span class="note">Անվճար առաքում</span>
+          </div>
+          <ul class="order-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Կոշտ կազմ, որակյալ տպագրություն</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Առաքում ամբողջ Հայաստանով</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg> Հնարավոր է հեղինակի մակագրությամբ</li>
+          </ul>
+          <div class="hero-actions">
+            <a href="tel:+37400000000" class="btn btn-primary">Զանգահարել պատվերի համար</a>
+            <a href="mailto:hello@example.com?subject=Կյանքը%20ներսից%20—%20պատվեր" class="btn btn-ghost">Գրել մեզ</a>
+          </div>
+        </div>
+        <div class="order-right">
+          <img class="mini-book" src="assets/book-photo.jpg" alt="«Կյանքը ներսից» գիրք" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <div class="foot-brand">Կյանքը <span>ներսից</span></div>
+          <p class="foot-tag">17 քայլ դեպի ներքին ազատություն։ Գիրք ինքնաճանաչման և հոգու խաղաղության մասին։</p>
+        </div>
+        <div class="foot-links">
+          <div class="foot-col">
+            <h4>Բաժիններ</h4>
+            <a href="#about">Գրքի մասին</a>
+            <a href="#themes">Թեմաներ</a>
+            <a href="#journey">17 քայլ</a>
+            <a href="#author">Հեղինակը</a>
+          </div>
+          <div class="foot-col">
+            <h4>Կապ</h4>
+            <a href="#order">Պատվիրել</a>
+            <a href="mailto:hello@example.com">Էլ․ փոստ</a>
+            <a href="tel:+37400000000">Հեռախոս</a>
+          </div>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <span>© 2026 Կամո Պողոսյան · «Կյանքը ներսից»։ Բոլոր իրավունքները պաշտպանված են։</span>
+        <span>Ստեղծված սիրով ❦</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Nav background on scroll
+    const nav = document.getElementById('nav');
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+  </script>
+</body>
+</html>
