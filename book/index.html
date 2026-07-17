@@ -263,28 +263,139 @@
     .theme-card p { font-size: 15.5px; color: var(--ink-soft); }
     @media (max-width: 860px) { .themes-grid { grid-template-columns: 1fr; } }
 
-    /* ---------- JOURNEY / 17 STEPS ---------- */
-    .journey { background: linear-gradient(180deg, var(--paper), var(--paper-2)); }
-    .steps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px 40px; margin-top: 10px; }
-    .step {
-      display: flex; gap: 22px; align-items: flex-start;
-      padding: 22px 4px;
-      border-bottom: 1px solid var(--line);
+    /* ---------- JOURNEY / 17 STEPS — THE TRAIL ---------- */
+    .journey { background: linear-gradient(180deg, var(--paper), var(--paper-2)); overflow: hidden; }
+    .journey::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(50% 40% at 88% 12%, rgba(142,162,122,.16), transparent 60%),
+        radial-gradient(46% 38% at 6% 82%, rgba(185,143,62,.12), transparent 60%);
     }
-    .step .n {
-      font-family: var(--serif);
-      font-size: 30px; font-weight: 600;
-      color: var(--gold);
-      min-width: 46px; line-height: 1;
+    .trail {
+      position: relative;
+      max-width: 900px;
+      margin: 20px auto 0;
+      padding: 30px 0;
+    }
+    /* the path spine */
+    .trail-line {
+      position: absolute; top: 0; bottom: 0; left: 50%;
+      width: 4px; transform: translateX(-50%);
+      background: repeating-linear-gradient(var(--line) 0 6px, transparent 6px 14px);
+      border-radius: 4px;
+    }
+    .trail-fill {
+      position: absolute; top: 0; left: 0; width: 100%; height: 0%;
+      background: linear-gradient(180deg, var(--sage), var(--moss) 45%, var(--gold));
+      border-radius: 4px;
+      box-shadow: 0 0 18px rgba(185,143,62,.35);
+      transition: height .15s linear;
+    }
+    /* the glowing "you are here" comet at the tip */
+    .trail-comet {
+      position: absolute; left: 50%; top: 0; width: 16px; height: 16px;
+      transform: translate(-50%, -50%); border-radius: 50%;
+      background: radial-gradient(circle, #fff, var(--gold-soft) 45%, var(--gold));
+      box-shadow: 0 0 0 5px rgba(185,143,62,.18), 0 0 22px 5px rgba(185,143,62,.5);
+      opacity: 0; transition: opacity .4s;
+    }
+    .trail.active .trail-comet { opacity: 1; }
+    .trail-comet::after {
+      content: ''; position: absolute; inset: -3px; border-radius: 50%;
+      border: 1.5px solid rgba(185,143,62,.5); animation: ping 2.4s ease-out infinite;
+    }
+    @keyframes ping { 0% { transform: scale(1); opacity: .8; } 100% { transform: scale(2.6); opacity: 0; } }
+
+    .tstep {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 78px 1fr;
+      align-items: center;
+      min-height: 92px;
+    }
+    /* node on the spine */
+    .tnode {
+      grid-column: 2;
+      justify-self: center;
+      position: relative; z-index: 2;
+      width: 58px; height: 58px; border-radius: 50%;
+      display: grid; place-items: center;
+      font-family: var(--serif); font-weight: 600; font-size: 19px;
       font-variant-numeric: tabular-nums;
+      color: var(--sage); background: var(--cream);
+      border: 2px solid var(--line);
+      box-shadow: 0 6px 16px -8px rgba(33,44,31,.3);
+      transition: transform .5s cubic-bezier(.2,.9,.2,1.2), color .5s, background .5s, border-color .5s, box-shadow .5s;
     }
-    .step .body h3 { font-size: 18.5px; color: var(--forest-deep); font-weight: 600; margin-bottom: 3px; }
-    .step .body p { font-size: 14.5px; color: var(--ink-soft); }
-    @media (max-width: 760px) { .steps { grid-template-columns: 1fr; gap: 0; } }
+    .tstep.lit .tnode {
+      color: var(--cream);
+      background: linear-gradient(150deg, var(--moss), var(--forest));
+      border-color: var(--gold-soft);
+      transform: scale(1.12);
+      box-shadow: 0 12px 26px -10px rgba(47,61,44,.6), 0 0 0 6px rgba(142,162,122,.14);
+    }
+    /* card */
+    .tcard {
+      position: relative;
+      background: var(--cream);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 20px 24px;
+      box-shadow: 0 18px 40px -30px rgba(33,44,31,.5);
+      opacity: 0;
+      transition: opacity .7s cubic-bezier(.2,.8,.2,1), transform .7s cubic-bezier(.2,.8,.2,1), box-shadow .4s, border-color .4s;
+      will-change: transform, opacity;
+    }
+    .tcard h3 { font-size: 19px; color: var(--forest-deep); font-weight: 600; margin-bottom: 4px; }
+    .tcard p { font-size: 14.5px; color: var(--ink-soft); line-height: 1.6; }
+    /* little pointer connecting card to spine */
+    .tcard::after {
+      content: ''; position: absolute; top: 50%; width: 26px; height: 2px;
+      background: var(--line); transform: translateY(-50%);
+    }
+    /* left-side steps */
+    .tstep.left .tcard { grid-column: 1; text-align: right; transform: translateX(38px); }
+    .tstep.left .tcard::after { right: -26px; }
+    /* right-side steps */
+    .tstep.right .tcard { grid-column: 3; transform: translateX(-38px); }
+    .tstep.right .tcard::after { left: -26px; }
+    /* revealed */
+    .tstep.lit .tcard { opacity: 1; transform: translateX(0); }
+    .tstep.lit .tcard { border-color: transparent; }
+    .tstep .tcard:hover { transform: translateX(0) translateY(-4px); box-shadow: 0 26px 48px -28px rgba(33,44,31,.55); }
+
+    /* start & finish markers */
+    .trail-cap {
+      position: relative; z-index: 2; display: grid; place-items: center;
+      width: 46px; height: 46px; margin: 0 auto; border-radius: 50%;
+      background: var(--cream); border: 2px solid var(--sage-soft); color: var(--moss);
+    }
+    .trail-cap.finish { background: linear-gradient(150deg, var(--gold-soft), var(--gold)); border-color: var(--gold); color: var(--cream); }
+    .trail-cap svg { width: 22px; height: 22px; }
+    .trail-cap.start { margin-bottom: 6px; }
+    .trail-cap.finish { margin-top: 6px; box-shadow: 0 10px 24px -10px rgba(185,143,62,.6); }
 
     .journey-note {
       margin-top: 46px; text-align: center;
-      font-size: 14px; color: var(--ink-soft);
+      font-family: var(--serif); font-style: italic;
+      font-size: 18px; color: var(--moss);
+    }
+
+    @media (max-width: 720px) {
+      .trail { margin-top: 6px; }
+      .trail-line, .trail-fill, .trail-comet { left: 29px; }
+      .trail-cap { margin: 0 0 0 6px; }
+      .tstep { grid-template-columns: 58px 1fr; min-height: 0; margin: 6px 0; }
+      .tnode { grid-column: 1; }
+      .tstep.left .tcard, .tstep.right .tcard {
+        grid-column: 2; text-align: left; transform: translateX(26px); margin-left: 14px;
+      }
+      .tstep.left .tcard::after, .tstep.right .tcard::after { left: -26px; right: auto; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .trail-fill { transition: none; }
+      .tcard { opacity: 1 !important; transform: none !important; }
+      .trail-comet::after { animation: none; }
     }
 
     /* ---------- QUOTE BANNER ---------- */
@@ -499,24 +610,35 @@
         <p>Յուրաքանչյուր քայլ առանձին գլուխ է՝ փոքր, կարդալի և կիրառելի։ Միասին դրանք կազմում են մեկ ամբողջական ճանապարհ։</p>
       </div>
       <!-- Քայլերի անվանումները թեմատիկ ուղեցույց են և կարող են հարմարեցվել գրքի բովանդակությանը -->
-      <div class="steps">
-        <div class="step reveal"><div class="n">01</div><div class="body"><h3>Կանգ առնել</h3><p>Դադար տալ վազքին և նկատել սեփական կյանքը։</p></div></div>
-        <div class="step reveal"><div class="n">02</div><div class="body"><h3>Լսել լռությունը</h3><p>Գտնել ձայնը, որ խեղդվում է աղմուկի մեջ։</p></div></div>
-        <div class="step reveal"><div class="n">03</div><div class="body"><h3>Ընդունել ինքդ քեզ</h3><p>Հանդիպել ինքդ քեզ առանց դատողության։</p></div></div>
-        <div class="step reveal"><div class="n">04</div><div class="body"><h3>Ազատվել վախից</h3><p>Ճանաչել վախերն ու դադարել փախչել դրանցից։</p></div></div>
-        <div class="step reveal"><div class="n">05</div><div class="body"><h3>Ներել</h3><p>Բաց թողնել անցյալի ծանրությունը՝ քեզ և ուրիշներին։</p></div></div>
-        <div class="step reveal"><div class="n">06</div><div class="body"><h3>Ապրել ներկայում</h3><p>Վերադառնալ այստեղ և հիմա պահին։</p></div></div>
-        <div class="step reveal"><div class="n">07</div><div class="body"><h3>Երախտագիտություն</h3><p>Տեսնել առատությունը, որ արդեն կա։</p></div></div>
-        <div class="step reveal"><div class="n">08</div><div class="body"><h3>Սահմաններ դնել</h3><p>Սովորել ասել «ոչ»՝ առանց մեղքի զգացման։</p></div></div>
-        <div class="step reveal"><div class="n">09</div><div class="body"><h3>Վստահել</h3><p>Հանձնվել կյանքի հոսքին և ընթացքին։</p></div></div>
-        <div class="step reveal"><div class="n">10</div><div class="body"><h3>Պարզություն</h3><p>Ազատվել ավելորդից՝ մտքում և կյանքում։</p></div></div>
-        <div class="step reveal"><div class="n">11</div><div class="body"><h3>Ինքնախնամք</h3><p>Վերաբերվել ինքդ քեզ որպես մտերիմ ընկերոջ։</p></div></div>
-        <div class="step reveal"><div class="n">12</div><div class="body"><h3>Զգացմունքներ</h3><p>Ապրել զգացմունքները՝ առանց դրանցից փախչելու։</p></div></div>
-        <div class="step reveal"><div class="n">13</div><div class="body"><h3>Կապ ուրիշների հետ</h3><p>Կառուցել անկեղծ ու խորը հարաբերություններ։</p></div></div>
-        <div class="step reveal"><div class="n">14</div><div class="body"><h3>Իմաստ գտնել</h3><p>Հասկանալ՝ ինչն է իսկապես կարևոր քեզ համար։</p></div></div>
-        <div class="step reveal"><div class="n">15</div><div class="body"><h3>Համբերություն</h3><p>Վստահել, որ ամեն ինչ ունի իր ժամանակը։</p></div></div>
-        <div class="step reveal"><div class="n">16</div><div class="body"><h3>Ներքին խաղաղություն</h3><p>Գտնել հանգիստը՝ անկախ արտաքին հանգամանքներից։</p></div></div>
-        <div class="step reveal"><div class="n">17</div><div class="body"><h3>Ազատություն</h3><p>Ապրել լիարժեք՝ ներսից դուրս։</p></div></div>
+      <div class="trail" id="trail">
+        <div class="trail-line"><div class="trail-fill" id="trailFill"></div></div>
+        <div class="trail-comet" id="trailComet"></div>
+
+        <div class="trail-cap start reveal" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v6m0 0 3-3m-3 3L9 5"/><circle cx="12" cy="16" r="5"/></svg>
+        </div>
+
+        <div class="tstep left"><div class="tnode">01</div><div class="tcard"><h3>Կանգ առնել</h3><p>Դադար տալ վազքին և նկատել սեփական կյանքը։</p></div></div>
+        <div class="tstep right"><div class="tnode">02</div><div class="tcard"><h3>Լսել լռությունը</h3><p>Գտնել ձայնը, որ խեղդվում է աղմուկի մեջ։</p></div></div>
+        <div class="tstep left"><div class="tnode">03</div><div class="tcard"><h3>Ընդունել ինքդ քեզ</h3><p>Հանդիպել ինքդ քեզ առանց դատողության։</p></div></div>
+        <div class="tstep right"><div class="tnode">04</div><div class="tcard"><h3>Ազատվել վախից</h3><p>Ճանաչել վախերն ու դադարել փախչել դրանցից։</p></div></div>
+        <div class="tstep left"><div class="tnode">05</div><div class="tcard"><h3>Ներել</h3><p>Բաց թողնել անցյալի ծանրությունը՝ քեզ և ուրիշներին։</p></div></div>
+        <div class="tstep right"><div class="tnode">06</div><div class="tcard"><h3>Ապրել ներկայում</h3><p>Վերադառնալ այստեղ և հիմա պահին։</p></div></div>
+        <div class="tstep left"><div class="tnode">07</div><div class="tcard"><h3>Երախտագիտություն</h3><p>Տեսնել առատությունը, որ արդեն կա։</p></div></div>
+        <div class="tstep right"><div class="tnode">08</div><div class="tcard"><h3>Սահմաններ դնել</h3><p>Սովորել ասել «ոչ»՝ առանց մեղքի զգացման։</p></div></div>
+        <div class="tstep left"><div class="tnode">09</div><div class="tcard"><h3>Վստահել</h3><p>Հանձնվել կյանքի հոսքին և ընթացքին։</p></div></div>
+        <div class="tstep right"><div class="tnode">10</div><div class="tcard"><h3>Պարզություն</h3><p>Ազատվել ավելորդից՝ մտքում և կյանքում։</p></div></div>
+        <div class="tstep left"><div class="tnode">11</div><div class="tcard"><h3>Ինքնախնամք</h3><p>Վերաբերվել ինքդ քեզ որպես մտերիմ ընկերոջ։</p></div></div>
+        <div class="tstep right"><div class="tnode">12</div><div class="tcard"><h3>Զգացմունքներ</h3><p>Ապրել զգացմունքները՝ առանց դրանցից փախչելու։</p></div></div>
+        <div class="tstep left"><div class="tnode">13</div><div class="tcard"><h3>Կապ ուրիշների հետ</h3><p>Կառուցել անկեղծ ու խորը հարաբերություններ։</p></div></div>
+        <div class="tstep right"><div class="tnode">14</div><div class="tcard"><h3>Իմաստ գտնել</h3><p>Հասկանալ՝ ինչն է իսկապես կարևոր քեզ համար։</p></div></div>
+        <div class="tstep left"><div class="tnode">15</div><div class="tcard"><h3>Համբերություն</h3><p>Վստահել, որ ամեն ինչ ունի իր ժամանակը։</p></div></div>
+        <div class="tstep right"><div class="tnode">16</div><div class="tcard"><h3>Ներքին խաղաղություն</h3><p>Գտնել հանգիստը՝ անկախ արտաքին հանգամանքներից։</p></div></div>
+        <div class="tstep left"><div class="tnode">17</div><div class="tcard"><h3>Ազատություն</h3><p>Ապրել լիարժեք՝ ներսից դուրս։</p></div></div>
+
+        <div class="trail-cap finish reveal" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 21V4m0 1 4-1c3 1 5-1 8 0v9c-3-1-5 1-8 0l-4 1"/></svg>
+        </div>
       </div>
       <p class="journey-note reveal">17 քայլ, մեկ ճանապարհ — դեպի այն ազատությունը, որ միշտ եղել է ներսում։</p>
     </div>
@@ -624,6 +746,57 @@
       });
     }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' });
     document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+    // The trail: draw the path, light nodes, glide the comet as the section scrolls
+    (function () {
+      const trail = document.getElementById('trail');
+      if (!trail) return;
+      const fill = document.getElementById('trailFill');
+      const comet = document.getElementById('trailComet');
+      const steps = Array.from(trail.querySelectorAll('.tstep'));
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (reduce) {
+        fill.style.height = trail.getBoundingClientRect().height + 'px';
+        steps.forEach((s) => s.classList.add('lit'));
+        return;
+      }
+
+      // node centres measured relative to the trail (scroll-independent)
+      const computeCenters = () => {
+        const tr = trail.getBoundingClientRect().top;
+        return steps.map((s) => {
+          const r = s.querySelector('.tnode').getBoundingClientRect();
+          return (r.top - tr) + r.height / 2;
+        });
+      };
+      let centers = computeCenters();
+      let ticking = false;
+
+      function update() {
+        ticking = false;
+        const rect = trail.getBoundingClientRect();
+        const vh = window.innerHeight;
+        // progress marker sits ~62% down the viewport for a natural "walking ahead" feel
+        const marker = vh * 0.62;
+        const reached = marker - rect.top;
+        const prog = Math.max(0, Math.min(1, reached / rect.height));
+        const px = prog * rect.height;
+
+        fill.style.height = px + 'px';
+        comet.style.top = px + 'px';
+        trail.classList.toggle('active', prog > 0.004 && prog < 0.996);
+        steps.forEach((s, i) => s.classList.toggle('lit', px >= centers[i] - 4));
+      }
+
+      function onScroll() {
+        if (!ticking) { ticking = true; requestAnimationFrame(update); }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', () => { centers = computeCenters(); update(); });
+      window.addEventListener('load', () => { centers = computeCenters(); update(); });
+      update();
+    })();
   </script>
 </body>
 </html>
