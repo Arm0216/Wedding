@@ -205,9 +205,12 @@
       .hero { grid-template-columns: 1fr; text-align: center; padding-top: 130px; gap: 60px; }
       .hero-copy { margin: 0 auto; }
       .hero-sub, .hero-actions, .hero-meta { justify-content: center; }
+      .hero-sub { flex-wrap: wrap; }
+      .hero-lead { margin-left: auto; margin-right: auto; }
       .hero .eyebrow { display: inline-block; }
       .book-frame { transform: none; }
       .book-frame:hover { transform: translateY(-6px); }
+      .leaf { display: none; }
     }
 
     /* ---------- SECTION SHELL ---------- */
@@ -383,7 +386,7 @@
 
     @media (max-width: 720px) {
       .trail { margin-top: 6px; }
-      .trail-line, .trail-fill, .trail-comet { left: 29px; }
+      .trail-line, .trail-comet { left: 29px; }
       .trail-cap { margin: 0 0 0 6px; }
       .tstep { grid-template-columns: 58px 1fr; min-height: 0; margin: 6px 0; }
       .tnode { grid-column: 1; }
@@ -457,10 +460,10 @@
     .order-left .eyebrow { display:inline-block; margin-bottom: 16px; }
     .order-left h2 { font-size: clamp(30px, 4vw, 42px); color: var(--forest-deep); margin-bottom: 16px; line-height: 1.1; }
     .order-left p { font-size: 16.5px; color: var(--ink-soft); margin-bottom: 30px; }
-    .price { display: flex; align-items: baseline; gap: 12px; margin-bottom: 30px; }
+    .price { display: flex; align-items: baseline; gap: 12px; margin-bottom: 30px; flex-wrap: wrap; }
     .price .amt { font-family: var(--serif); font-size: 46px; font-weight: 600; color: var(--forest); }
     .price .cur { font-size: 18px; color: var(--ink-soft); }
-    .price .note { font-size: 13px; color: var(--gold); background: rgba(185,143,62,.1); padding: 5px 12px; border-radius: 100px; margin-left: 6px; }
+    .price .note { font-size: 13px; color: var(--gold); background: rgba(185,143,62,.1); padding: 5px 12px; border-radius: 100px; margin-left: 6px; white-space: nowrap; }
     .order-list { list-style: none; margin-bottom: 34px; }
     .order-list li { display: flex; gap: 12px; align-items: center; font-size: 15.5px; color: var(--ink-soft); padding: 7px 0; }
     .order-list svg { width: 20px; height: 20px; color: var(--moss); flex-shrink: 0; }
